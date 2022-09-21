@@ -1,25 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, View, Alert } from 'react-native';
 import { Button, Input } from '@rneui/base';
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
-import { app } from '../firebase';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { logIn, signUp } from '../util/auth';
+import {AuthContext} from '../store/auth-context'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = getAuth();
+  const authCtx = useContext(AuthContext)
+  //adicionar verificacoes do firebase senha minimo 6 caracteres.
+ 
 
   const handleRegister = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password)
-      console.log(user)
+      const token = await signUp(email, password);
+      authCtx.authenticate(token);
     } catch (error) {
-      alert(error.message);
+      Alert.alert('Erro', error.message);
     }
+  }
 
-    console.log(email, password)
+  const handleLogin = async () => {
+    try {
+      const token = await logIn(email, password);
+      authCtx.authenticate(token);
+    } catch (error) {
+      Alert.alert('Erro', error.message);
+    }
   }
 
   return (
@@ -30,10 +39,13 @@ const LoginScreen = () => {
           onChangeText={(text) => setEmail(text)}
         />
         <Input 
-          placeholder="password" 
+          placeholder="password"
           onChangeText={(text) => setPassword(text)}
         />
-        <Button title="Login"></Button>
+        <Button
+          title="Login"
+          onPress={handleLogin}>
+        </Button>
         <Button 
           title="Register"
           onPress={handleRegister}
