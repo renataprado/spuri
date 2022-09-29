@@ -21,7 +21,7 @@ function AuthStack(){
 function AuthenticatedStack(){
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 }
@@ -31,8 +31,9 @@ function Navegation(){
 
   return(
     <NavigationContainer>
-      { !authCtx.isAuthenticated && <AuthStack />}
-      { authCtx.isAuthenticated && <AuthenticatedStack /> }
+      {/* trocar o sinal para auth */}
+      { authCtx.isAuthenticated && <AuthStack />}
+      { !authCtx.isAuthenticated && <AuthenticatedStack /> }
     </NavigationContainer>
   )
 
