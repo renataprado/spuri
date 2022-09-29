@@ -34,6 +34,7 @@ const CalendarLine = (props) => {
         let index = day < 5 ? 0 : day ;
         setTimeout(() => {list.current.scrollToIndex({ index })}, 900);
     }
+    //precisa ter o mesmo tamanho do item da lista do scrollToIndex funcionar!!!
     const getItemLayout = (data, index) => (
         { length: 75, offset: 75 * index, index }
     )

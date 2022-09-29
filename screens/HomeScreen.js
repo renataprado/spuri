@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import CalendarLine from '../components/CalendarLine/CalendarLine'
 import moment from 'moment';
 import Colors from '../contants/colors'
+import { Button, Input } from '@rneui/base';
 
 const HomeScreen = () => {
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -14,6 +15,7 @@ const HomeScreen = () => {
     <View style={styles.screen}>
       <View style={styles.upbar} />
       <CalendarLine onSelectDate={onSelectDate}></CalendarLine>
+      <HomeArea />
     </View>
   )
 }
@@ -29,11 +31,40 @@ const styles = StyleSheet.create({
   upbar: { 
     height: 30,
     backgroundColor: Colors.bg1
-  }
+  },
+  homeArea: {
+    height: '80%',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+  },
 });
 
 //rnfes snippet
 
 const HomeArea = () => {
+  return (
+    <View style={styles.homeArea}>
+      <Button
+        title={'Como foi o seu dia?'}
+        buttonStyle={{
+          borderRadius: 20,
+          backgroundColor: Colors.bg1,
+          height: "50%",
+        }}
+        containerStyle={{
+          marginHorizontal: 80,
+          marginVertical: 0,
+        }}
+        icon={{
+          name: "plus",
+          type: "font-awesome",
+          size: 36,
+          color: "white",
+        }}
+        iconRight
+        iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+      />
+    </View>
+  );
 
 }
