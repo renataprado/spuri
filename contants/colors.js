@@ -1,11 +1,13 @@
 export default {
-    primary: '#212340',
+    primary: '#b0b0ae',
     primaryShade: '#2c2f57',
     secundary: '',
     lightPink: '#f090c8', 
     white: '#FFF',
     lightDark: '#212340',
     dark: '#121212',
+    //bg
+    bg1: '#b0b0ae',
     //mood
     scale1: "#4b57d6",
     scale2: "#4ba5d6",

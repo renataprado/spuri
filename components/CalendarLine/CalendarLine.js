@@ -31,11 +31,11 @@ const CalendarLine = (props) => {
 
     const scrollToInitialIndex = () => {
         let day = moment(selectedDate).format('DD')
-        let index = day < 5 ? 0 : day;
+        let index = day < 5 ? 0 : day ;
         setTimeout(() => {list.current.scrollToIndex({ index })}, 900);
     }
     const getItemLayout = (data, index) => (
-        { length: 50, offset: 50 * index, index }
+        { length: 75, offset: 75 * index, index }
     )
 
     const onSelectDay = (date) => {
@@ -81,8 +81,8 @@ const CalendarLine = (props) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        padding: 5,
-        backgroundColor: Colors.primary
+        paddingBottom: 10,
+        backgroundColor: Colors.bg1
     },
     containerSelectedDay: {
         padding: 10,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     textSelected: {
-        color: Colors.primary
+        color: Colors.bg1
     }
 })
 
