@@ -6,8 +6,10 @@ export default {
     white: '#FFF',
     lightDark: '#212340',
     dark: '#121212',
+    //text
+    contrast: '#454545',
     //bg
-    bg1: '#b0b0ae',
+    bg_gray: '#454545',
     //mood
     scale1: "#4b57d6",
     scale2: "#4ba5d6",

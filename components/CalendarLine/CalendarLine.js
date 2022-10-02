@@ -30,8 +30,8 @@ const CalendarLine = (props) => {
     }
 
     const scrollToInitialIndex = () => {
-        let day = moment(selectedDate).format('DD')
-        let index = day < 5 ? 0 : day ;
+        let day = Number(moment(selectedDate).format('DD'))-1;
+        let index = day < 5 ? 0 : (day) ;
         setTimeout(() => {list.current.scrollToIndex({ index })}, 900);
     }
     //precisa ter o mesmo tamanho do item da lista do scrollToIndex funcionar!!!
@@ -60,7 +60,7 @@ const CalendarLine = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.containerSelectedDay}>
-                <FontAwesome5 name="calendar-day" size={24} color="white" />
+                <FontAwesome5 name="calendar-day" size={24} color={Colors.contrast} />
                 <Text style={ styles.selectedDay}>{moment(selectedDate).format('ddd, DD MMM')}</Text>
             </View>
             <View >
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#FFF',
+        color: Colors.contrast,
         marginLeft: 10
     },  
     containerDay: {
@@ -103,26 +103,26 @@ const styles = StyleSheet.create({
         height: 75,
         justifyContent: 'flex-start',
         borderWidth: 1,
-        borderColor: '#FFF',
+        borderColor: Colors.contrast,
         borderRadius: 10,
         marginLeft: 10,
         padding: 6
     },
     selected: {
-        backgroundColor: '#FFF'
+        backgroundColor: Colors.contrast                                                                                                                                                                                                                                                                                                                                                                                                              
     },
     textDD:{
-        color: '#fff',
+        color:  Colors.contrast,
         fontWeight: 'bold',
         fontSize: 14
     },
     textddd:{
-        color: '#fff',
+        color: Colors.contrast,
         textTransform: 'uppercase',
         fontSize: 12
     },
     textSelected: {
-        color: Colors.bg1
+        color: '#FFF'
     }
 })
 
