@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen'
-import LoginScreen  from './screens/LoginScreen'
+import LoginScreen  from './screens/Login/LoginScreen'
 import AuthContextProvider, { AuthContext }from './store/auth-context';
 import { useContext } from 'react';
 
@@ -31,9 +31,10 @@ function Navegation(){
 
   return(
     <NavigationContainer>
+       <AuthStack />
       {/* trocar o sinal para auth */}
-      { authCtx.isAuthenticated && <AuthStack />}
-      { !authCtx.isAuthenticated && <AuthenticatedStack /> }
+      {/* { !authCtx.isAuthenticated && <AuthStack />}
+      { authCtx.isAuthenticated && <AuthenticatedStack /> } */}
     </NavigationContainer>
   )
 
