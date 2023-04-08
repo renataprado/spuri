@@ -64,9 +64,9 @@ const FormLogin = (props) => {
   async function onContinue(){
     const validEmail = validateEmail(form.email);
     console.log('continue')
-    console.log(form.email)
-    if(form.emailValid){
-      const isUser = await isUserEmail(email);
+    console.log(form.email);
+    const isUser = await isUserEmail(form.email);
+    console.log('return is user', isUser)
       isUser
       ? setStage({
         action: 'Entrar',
@@ -76,7 +76,6 @@ const FormLogin = (props) => {
         action: 'Registrar',
         onPress: onSignup
       })
-    }
   }
 
   async function onLogin(){

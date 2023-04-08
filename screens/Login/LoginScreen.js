@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Alert } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, View, Alert, Image } from 'react-native';
 import { Button, Input } from '@rneui/base';
 import React, { useContext } from 'react'
 import { useState } from 'react';
 
 import Colors from '../../contants/colors';
 import FormLogin from '../../components/FormLogin';
+import Logo from '../../components/Logo'
+import StartComponent from './StartComponent';
 
 const LoginScreen = () => {
 
@@ -23,12 +25,20 @@ const LoginScreen = () => {
 
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <View style={{ width: "80%" }}>
-       <FormLogin />
-      </View>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1}}/>
+        <View style={{ flex: 2 }}>
+          <Logo />
+        </View>
+        <View style={{ flex: 3, justifyContent: "center"}} >
+          <StartComponent />          
+        </View>
+
+      {/* <FormLogin /> */}
+
       <StatusBar></StatusBar>
-    </KeyboardAvoidingView>
+      </View>
+
   );
 }
 
@@ -37,7 +47,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white"
   }
 });

@@ -20,13 +20,13 @@ async function authenticate(mode, email, password){
 }
 
 async function isUserEmail(email){
+  console.log('isuseremail')
   const response = await signUp(email, 'vazio123');
-  console.log(response)
+  console.log('auth service response', response)
   if(response.code.includes('email-already-in-use')){
     return true;
   }
   return false;
-
 }
 
 async function signUp(email, password){
