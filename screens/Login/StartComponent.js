@@ -1,8 +1,9 @@
 import { View, Image, StyleSheet, Text } from "react-native";
 import { Button, Input } from "@rneui/base";
-import React from "react";
+import React, {useState} from "react";
 
-function StartComponent() {
+function StartComponent( {setAction}) {
+
   return (
     <View>
       <View
@@ -13,6 +14,7 @@ function StartComponent() {
       >
         <Button
           title="Entrar"
+          onPress={() => setAction('login')}
           titleStyle={{ fontWeight: "700" }}
           buttonStyle={{
             backgroundColor: "lightblue",
@@ -27,6 +29,7 @@ function StartComponent() {
         />
         <Button
           title="Registrar-se"
+          onPress={() => setAction('signup')}
           titleStyle={{ fontWeight: "700", color: "lightblue" }}
           buttonStyle={{
             backgroundColor: "transparent",
