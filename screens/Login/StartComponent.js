@@ -1,6 +1,8 @@
 import { View, Image, StyleSheet, Text } from "react-native";
 import { Button, Input } from "@rneui/base";
 import React, {useState} from "react";
+import PrimaryButton from "../../components/ui/PrimaryButton";
+import SecundaryButton from "../../components/ui/SecundaryButton";
 
 function StartComponent( {setAction}) {
 
@@ -12,36 +14,8 @@ function StartComponent( {setAction}) {
           alignSelf: "center",
         }}
       >
-        <Button
-          title="Entrar"
-          onPress={() => setAction('login')}
-          titleStyle={{ fontWeight: "700" }}
-          buttonStyle={{
-            backgroundColor: "lightblue",
-            borderColor: "transparent",
-            borderWidth: 0,
-            borderRadius: 5,
-          }}
-          containerStyle={{
-            width: "100%",
-            height: 60,
-          }}
-        />
-        <Button
-          title="Registrar-se"
-          onPress={() => setAction('signup')}
-          titleStyle={{ fontWeight: "700", color: "lightblue" }}
-          buttonStyle={{
-            backgroundColor: "transparent",
-            borderColor: "lightblue",
-            borderWidth: 2,
-            borderRadius: 5,
-          }}
-          containerStyle={{
-            width: "100%",
-            height: 60,
-          }}
-        />
+        <PrimaryButton onPress={() => setAction('login')}> Entrar </PrimaryButton>
+        <SecundaryButton onPress={() => setAction('signup')}> Registrar-se </SecundaryButton>
       </View>
     </View>
   );

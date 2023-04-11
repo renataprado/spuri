@@ -7,7 +7,8 @@ import Colors from '../../contants/colors';
 import FormLogin from '../../components/FormLogin';
 import Logo from '../../components/Logo'
 import StartComponent from './StartComponent';
-import LoginForm from './LoginForm';
+import LoginForm from '../../components/Auth/AuthForm';
+import AuthContent from '../../components/Auth/AuthContent';
 
 
 const LoginScreen = () => {
@@ -34,11 +35,12 @@ const LoginScreen = () => {
           <Logo />
         </View>
         <View style={{ flex: 3 }} >
-          <Text>{action}</Text>
+          {/* <Text>{action}</Text>
           { !action ? <StartComponent setAction={setAction}/> : 
-            action === 'login' ? <LoginForm setAction={setAction} /> : <></>
+            action === 'login' ? <LoginForm isLogin setAction={setAction} /> : <></>
           }
-          
+           */}
+           <AuthContent />
         </View>
 
       {/* <FormLogin /> */}
