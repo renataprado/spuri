@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import AuthForm from './AuthForm';
 import SecundaryButton from '../ui/SecundaryButton';
+import { Button } from '@rneui/themed';
 
 function AuthContent({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -58,10 +59,19 @@ function AuthContent({ isLogin, onAuthenticate }) {
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
+
       <View style={styles.buttons}>
-        <SecundaryButton onPress={switchAuthModeHandler}>
-          {isLogin ? 'Create a new user' : 'Log in instead'}
-        </SecundaryButton>
+        <Button
+          onPress={switchAuthModeHandler}
+          containerStyle={{
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          title={isLogin ? "Create a new user" : "Log in instead"}
+          type="clear"
+          titleStyle={{ color: "rgba(78, 116, 289, 1)" }}
+        />
       </View>
     </View>
   );
@@ -71,11 +81,10 @@ export default AuthContent;
 
 const styles = StyleSheet.create({
   authContent: {
-    marginTop: 64,
+    marginTop: 120,
     marginHorizontal: 32,
     padding: 16,
     borderRadius: 8,
-    backgroundColor: 'lightgreen',
     elevation: 2,
     shadowColor: 'black',
     shadowOffset: { width: 1, height: 1 },

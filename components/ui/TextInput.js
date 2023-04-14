@@ -1,4 +1,4 @@
-import { Input } from "@rneui/base";
+import { Input } from "@rneui/themed";
 import { StyleSheet } from 'react-native';
 import Colors from '../../contants/colors'
 
@@ -21,18 +21,18 @@ function TextInput({children, onChangeText, value}) {
 export default TextInput;
 
 const styles = StyleSheet.create({
-  inputStyle: {
-    color: Colors.pink_light
-  },
-  containerStyle: { 
-    marginBottom: -10,
-    marginTop: -5,
-  },
-  inputContainer: {
-    backgroundColor: Colors.white,
-    padding: 2,
-    borderWidth: 6,
-    borderColor:  Colors.white,
-    borderRadius: 10
-  },
+  // inputStyle: {
+  //   fontSize: 14,
+  //   color: Colors.pink_light,
+  //   padding: 10,
+  // },
+  // containerStyle: { 
+  //   marginBottom: -10,
+  // },
+  // inputContainer: {
+  //   height: 40,
+  //   backgroundColor: Colors.white,
+  //   borderColor:  Colors.white,
+  //   borderRadius: 10
+  // },
 });

@@ -1,12 +1,13 @@
-import { Input } from "@rneui/base";
+
 import { StyleSheet, Text, View } from "react-native";
 import Colors from "../../contants/colors";
 import TextInput from "../ui/TextInput";
 import { useState } from "react";
 import PrimaryButton from "../ui/PrimaryButton";
+import Input from './Input';
 
-function LoginForm({ isLogin, submitHandler}) {
-  const [enteredEmail, setenteredEmail] = useState("");
+function AuthForm({ isLogin, submitHandler, credentialsInvalid}) {
+  const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
@@ -19,33 +20,70 @@ function LoginForm({ isLogin, submitHandler}) {
       confirmPassword: enteredConfirmPassword,
     });
   }
+
+  const {
+    email: emailIsInvalid,
+    confirmEmail: emailsDontMatch,
+    password: passwordIsInvalid,
+    confirmPassword: passwordsDontMatch,
+  } = credentialsInvalid;
+
+  function updateInputValueHandler(inputType, enteredValue) {
+    switch (inputType) {
+      case 'email':
+        setEnteredEmail(enteredValue);
+        break;
+      case 'confirmEmail':
+        setEnteredConfirmEmail(enteredValue);
+        break;
+      case 'password':
+        setEnteredPassword(enteredValue);
+        break;
+      case 'confirmPassword':
+        setEnteredConfirmPassword(enteredValue);
+        break;
+    }
+  }
+
   
   return (
-    <View>
       <View style={{ width: "80%", alignSelf: "center" }}>
-        <TextInput onChangeText={(t) => setenteredEmail(t)} value={enteredEmail}>
-          Email
-        </TextInput>
+        <Input
+          label="Email Address"
+          onUpdateValue={updateInputValueHandler.bind(this, 'email')}
+          value={enteredEmail}
+          keyboardType="email-address"
+          isInvalid={emailIsInvalid}
+        />
         {!isLogin && (
-          <TextInput
-            onChangeText={(t) => setEnteredConfirmEmail(t)}
+          <Input
+            label="Confirm Email Address"
+            onUpdateValue={updateInputValueHandler.bind(this, 'confirmEmail')}
             value={enteredConfirmEmail}
-          >
-            confirme email
-          </TextInput>
+            keyboardType="email-address"
+            isInvalid={emailsDontMatch}
+          />
         )}
-        <TextInput onChangeText={(t) => setEnteredPassword(t)} value={enteredPassword}>
-          senha
-        </TextInput>
+        <Input
+          label="Password"
+          onUpdateValue={updateInputValueHandler.bind(this, 'password')}
+          secure
+          value={enteredPassword}
+          isInvalid={passwordIsInvalid}
+        />
         {!isLogin && (
-          <TextInput
-            onChangeText={(t) => setEnteredConfirmPassword(t)}
+          <Input
+            label="Confirm Password"
+            onUpdateValue={updateInputValueHandler.bind(
+              this,
+              'confirmPassword'
+            )}
+            secure
             value={enteredConfirmPassword}
-          >
-            confirme senha
-          </TextInput>
+            isInvalid={passwordsDontMatch}
+          />
         )}
-
+        <View >
         <Text>{enteredEmail}</Text>
         <PrimaryButton>
           { isLogin ? 'Entrar' : 'Registrar-se'}
@@ -55,27 +93,5 @@ function LoginForm({ isLogin, submitHandler}) {
   );
 }
 
-export default LoginForm;
+export default AuthForm;
 
-const styles = StyleSheet.create({
-  inputStyle: {
-    color: Colors.pink_light,
-  },
-  containerStyle: {
-    marginBottom: -10,
-    marginTop: -5,
-  },
-  inputContainer: {
-    backgroundColor: Colors.white,
-    padding: 2,
-    borderWidth: 6,
-    borderColor: Colors.white,
-    borderRadius: 10,
-  },
-  buttonStyle: {
-    backgroundColor: Colors.blue_light,
-    borderRadius: 5,
-    height: 50,
-    padding: 10,
-  },
-});
