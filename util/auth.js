@@ -14,8 +14,7 @@ async function authenticate(mode, email, password){
     return idToken;
   } catch (error) {
     const { code, message } = error;
-    console.log(code)
-    return {code, message};
+    throw({code, message});
   }
 }
 

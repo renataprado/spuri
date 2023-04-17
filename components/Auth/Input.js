@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   inputInvalid: {
-    backgroundColor: 'red',
+    borderWidth: 1,
+    borderColor: 'red',
   },
 });

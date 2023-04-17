@@ -4,27 +4,32 @@ import { Button, Input } from '@rneui/base';
 import React, { useContext, useState } from 'react'
 
 import AuthContent from '../components/Auth/AuthContent';
+import { logIn } from '../util/auth';
+import LoadingOverlay from '../components/ui/LoadingOverlay';
+import { AuthContext } from '../store/auth-context';
+
 
 
 const LoginScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
 
-  
-  const [action, setAction] = useState('');
-
-  //adicionar verificacoes do firebase senha minimo 6 caracteres.
- 
-
-  const handleRegister = async () => {
+  async function loginHandler({email, password}){
+    setIsLoading(true);
     try {
-      const token = await signUp(email, password);
-      authCtx.authenticate(token);
+      const token = await logIn(email, password);
+      authCtx.authenticate(token);      
     } catch (error) {
       Alert.alert('Erro', error.message);
+      setIsLoading(false);
     }
   }
 
   return (
-      <AuthContent isLogin />
+    <View>
+      <AuthContent isLogin onAuthenticate={loginHandler}/>
+      { isLoading ? <LoadingOverlay /> : <></>}
+    </View>
   );
 }
 

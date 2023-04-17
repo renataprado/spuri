@@ -12,14 +12,6 @@ import { useContext } from 'react';
 
 const Stack = createNativeStackNavigator();
 
-// function AuthStack(){
-//   return(
-//     <Stack.Navigator>
-//       <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen}/>
-//     </Stack.Navigator>
-//   );
-// }
-
 function AuthStack() {
   return (
     <Stack.Navigator>
@@ -44,10 +36,10 @@ function Navegation(){
 
   return(
     <NavigationContainer>
-       <AuthStack />
-      {/* trocar o sinal para auth */}
-      {/* { !authCtx.isAuthenticated && <AuthStack />}
-      { authCtx.isAuthenticated && <AuthenticatedStack /> } */}
+       {/* <AuthStack />
+      trocar o sinal para auth */}
+      { !authCtx.isAuthenticated && <AuthStack /> }
+      { authCtx.isAuthenticated && <AuthenticatedStack /> }
     </NavigationContainer>
   )
 

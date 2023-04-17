@@ -6,7 +6,7 @@ import { useState } from "react";
 import PrimaryButton from "../ui/PrimaryButton";
 import Input from './Input';
 
-function AuthForm({ isLogin, submitHandler, credentialsInvalid}) {
+function AuthForm({ isLogin, onSubmit, credentialsInvalid}) {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -85,7 +85,7 @@ function AuthForm({ isLogin, submitHandler, credentialsInvalid}) {
         )}
         <View >
         <Text>{enteredEmail}</Text>
-        <PrimaryButton>
+        <PrimaryButton  onPress={submitHandler}>
           { isLogin ? 'Entrar' : 'Registrar-se'}
         </PrimaryButton>
       </View>
