@@ -4,19 +4,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen  from './screens/LoginScreen'
+import StartScreen from './screens/StartScreen';
+import SignupScreen from './screens/SignUpScreen';
 import AuthContextProvider, { AuthContext }from './store/auth-context';
 import { useContext } from 'react';
 
 
 const Stack = createNativeStackNavigator();
 
-function AuthStack(){
-  return(
+function AuthStack() {
+  return (
     <Stack.Navigator>
-      <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen}/>
+      <Stack.Screen  options={{ headerShown: false }} name="Start" component={StartScreen} />
+      <Stack.Screen  options={{ headerShown: false }} name="Login" component={LoginScreen} />
+      <Stack.Screen  options={{ headerShown: false }} name="Signup" component={SignupScreen} />
     </Stack.Navigator>
   );
 }
+
 
 function AuthenticatedStack(){
   return (
@@ -31,9 +36,10 @@ function Navegation(){
 
   return(
     <NavigationContainer>
-      {/* trocar o sinal para auth */}
-      { authCtx.isAuthenticated && <AuthStack />}
-      { !authCtx.isAuthenticated && <AuthenticatedStack /> }
+       {/* <AuthStack />
+      trocar o sinal para auth */}
+      { !authCtx.isAuthenticated && <AuthStack /> }
+      { authCtx.isAuthenticated && <AuthenticatedStack /> }
     </NavigationContainer>
   )
 
