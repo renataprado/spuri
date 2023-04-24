@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, {useState} from 'react'
-import CalendarLine from '../components/CalendarLine/CalendarLine'
+import CalendarLine from '../components/CalendarLine'
 import moment from 'moment';
 import Colors from '../contants/colors'
 import { Button, Input } from '@rneui/base';

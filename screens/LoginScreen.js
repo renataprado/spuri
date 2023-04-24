@@ -1,60 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, StyleSheet, Text, View, Alert } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, View, Alert, Image } from 'react-native';
 import { Button, Input } from '@rneui/base';
-import React, { useContext } from 'react'
-import { useState } from 'react';
-import { logIn, signUp } from '../util/auth';
-import {AuthContext} from '../store/auth-context'
+import React, { useContext, useState } from 'react'
+
+import AuthContent from '../components/Auth/AuthContent';
+import { logIn } from '../util/auth';
+import LoadingOverlay from '../components/ui/LoadingOverlay';
+import { AuthContext } from '../store/auth-context';
+
+
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const authCtx = useContext(AuthContext)
-  //adicionar verificacoes do firebase senha minimo 6 caracteres.
- 
+  const [isLoading, setIsLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
 
-  const handleRegister = async () => {
-    try {
-      const token = await signUp(email, password);
-      authCtx.authenticate(token);
-    } catch (error) {
-      Alert.alert('Erro', error.message);
-    }
-  }
-
-  const handleLogin = async () => {
+  async function loginHandler({email, password}){
+    setIsLoading(true);
     try {
       const token = await logIn(email, password);
-      authCtx.authenticate(token);
+      authCtx.authenticate(token);      
     } catch (error) {
       Alert.alert('Erro', error.message);
+      setIsLoading(false);
     }
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <View style={styles.inputContainer} >
-        <Input 
-          placeholder="e-mail" 
-          onChangeText={(text) => setEmail(text)}
-        />
-        <Input 
-          placeholder="password"
-          onChangeText={(text) => setPassword(text)}
-        />
-        <Button
-          title="Login"
-          onPress={handleLogin}>
-        </Button>
-        <Button 
-          title="Register"
-          onPress={handleRegister}
-        />
-      </View>
-      <StatusBar></StatusBar>
-
-    </KeyboardAvoidingView>
-  )
+    <View>
+      <AuthContent isLogin onAuthenticate={loginHandler}/>
+      { isLoading ? <LoadingOverlay /> : <></>}
+    </View>
+  );
 }
 
 export default LoginScreen;
@@ -62,10 +38,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  inputContainer: {
-    width: '80%'
+    alignItems: "center",
+    backgroundColor: "white"
   }
 });
