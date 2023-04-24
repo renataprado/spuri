@@ -32,23 +32,32 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: Colors.bg1
   },
-  homeArea: {
-    height: '80%',
-    backgroundColor: 'white',
-    justifyContent: 'center',
-  },
 });
 
 //rnfes snippet
 
 const HomeArea = () => {
+  const styles = StyleSheet.create({
+    screen: {
+      flex: 1,
+    },
+    upbar: { 
+      height: 30,
+      backgroundColor: Colors.bg1
+    },
+    homeArea: {
+      height: '80%',
+      backgroundColor: 'white',
+      justifyContent: 'center',
+    },
+  });
+
   return (
     <View style={styles.homeArea}>
       <Button
         title={'Como foi o seu dia?'}
         buttonStyle={{
           borderRadius: 20,
-          backgroundColor: Colors.bg1,
           height: "50%",
         }}
         containerStyle={{

@@ -31,9 +31,9 @@ function Navegation(){
 
   return(
     <NavigationContainer>
-      {/* trocar o sinal para auth */}
-      { authCtx.isAuthenticated && <AuthStack />}
-      { !authCtx.isAuthenticated && <AuthenticatedStack /> }
+      {/* { authCtx.isAuthenticated && <AuthStack />}
+      { !authCtx.isAuthenticated && <AuthenticatedStack /> } */}
+      <AuthenticatedStack />
     </NavigationContainer>
   )
 
