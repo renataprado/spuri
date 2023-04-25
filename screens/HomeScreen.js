@@ -4,6 +4,7 @@ import CalendarLine from '../components/CalendarLine'
 import moment from 'moment';
 import Colors from '../contants/colors'
 import { Button, Input } from '@rneui/base';
+import FactorLog from '../components/FactorLog';
 
 const HomeScreen = () => {
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -15,7 +16,8 @@ const HomeScreen = () => {
     <View style={styles.screen}>
       <View style={styles.upbar} />
       <CalendarLine onSelectDate={onSelectDate}></CalendarLine>
-      <HomeArea />
+      {/* <HomeArea /> */}
+      <FactorLog />
     </View>
   )
 }
