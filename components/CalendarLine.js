@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         paddingBottom: 10,
-        backgroundColor: Colors.bg1
+        backgroundColor: Colors.bg1,
     },
     containerSelectedDay: {
         padding: 10,
