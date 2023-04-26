@@ -11,12 +11,14 @@ function FactorLog( { id, selectedRate, selectedChips }) {
 
   return (
     <View style={[styles.rootContainer, {backgroundColor: backgroundColor}]}>
-      <Text style={styles.title}>{Factor.name}</Text>
-      <View style={{width: '75%'}}>
+      <View style={{maxWidth: '24%'}}>
+        <Text style={styles.title}>{Factor.name}</Text>
+      </View>
+      <View style={{width: '73%'}}>
         <LinearProgress 
           style={styles.linearProgress}
           value={decimalRate}
-          color={Colors[id+"Darker"]}
+          color={Colors[id+"Dark"]}
           trackColor='#959595'
           variant="determinate"
         />
@@ -30,14 +32,14 @@ function FactorLog( { id, selectedRate, selectedChips }) {
 
 const styles = StyleSheet.create({
   rootContainer:{
-    height: 80,
+    height: 64,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    padding: 8,
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 12,
     alignSelf: 'center',

@@ -8,6 +8,10 @@ function factorSelector(id){
       break;
     case "mind":
       return new Mindfullness(id);
+    case "nutrition":
+      return new Nutrition(id);
+    case "social":
+      return new Social(id);
     default:
       break;
   }
@@ -94,6 +98,24 @@ class Nutrition extends Factor {
 
   calculateDecimalRate(selectedRate) {
     return (1);
+  }
+}
+
+class Social extends Factor {
+  constructor(id) {
+    super(id);
+    this.name = "Contato Social";
+    this.rate = {
+      stages: [
+        { value: 1, name: "leve" },
+        { value: 2, name: "moderado" },
+        { value: 3, name: "intenso" },
+      ]
+    };
+  }
+
+  calculateDecimalRate(selectedRate){
+    return selectedRate * 0.33;
   }
 }
 

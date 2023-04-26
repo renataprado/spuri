@@ -23,14 +23,16 @@ export default {
     //factors
     //socialLogo: "#E87272",
     socialPrimary: "#D07272",
+    socialDark: "#B05555",
     nutritionLogo: "#EDCC79",
     nutritionPrimary: "#D39B68",
+    nutritionDark: "#AD7949",
     exerciseLogo: "#ABF28A",
     exercisePrimary: "#72A377",
-    exerciseDarker: "#517755",
+    exerciseDark: "#517755",
     sleepPrimary: "#7762A4",
-    sleepDarker: "#543890",
+    sleepDark: "#543890",
     mindPrimary: "#5881B3",
-    mindDarker: "#3A6496"
+    mindDark: "#3A6496"
 
 }
