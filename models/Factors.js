@@ -1,20 +1,13 @@
 function factorSelector(id){
-  switch (id) {
-    case "sleep":
-      return new Sleep(id);
-      break;
-    case "exercise":
-      return new Exercise(id);
-      break;
-    case "mind":
-      return new Mindfullness(id);
-    case "nutrition":
-      return new Nutrition(id);
-    case "social":
-      return new Social(id);
-    default:
-      break;
+  const factors ={
+    sleep: new Sleep(id),
+    exercise: new Exercise(id),
+    mind: new Mindfullness(id),
+    nutrition: new Nutrition(id),
+    social: new Social(id)
   }
+
+  return factors[id];
 }
 
 class Factor{
