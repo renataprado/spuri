@@ -1,94 +1,102 @@
-
-const Humor = {
-  rate: {
-    stages: [
-      { 1: "péssimo" },
-      { 2: "mal" },
-      { 3: "ok" },
-      { 4: "bem" },
-      { 5: "ótimo" },
-    ]
-  },
-  chips: [
-    "confiante",
-    "contente",
-    "focado",
-    "pensativo",
-    "ansioso",
-    "nervoso",
-    "irritado",
-    "triste",
-  ],
-};
-
-const Sleep = {
-  rate: {
-    stages: [
-      { 1: "péssimo" },
-      { 2: "ruim" },
-      { 3: "regular" },
-      { 4: "boa" },
-      { 5: "ótima" },
-    ]
-  },
-  chips: [
-    "deitou-se cedo",
-    "deitou-se tarde",
-    "acordou cedo",
-    "acordou tarde",
-    "dificuldade para dormir",
-    "dormiu com facilidade",
-    "suor noturno",
-    "pesadelo",
-    "sonhos intensos",
-  ],
-};
-
-const Mindfullness = {
-  rate: {
-    progress: {
-      start: 2,
-      end: 30,
-      unit: 'mins'
-    }
-  },
-  chips: [
-    "respiração",
-    "escaneamento corporal",
-    "sensorial",
-    "gratidão",
-    "compaixâo"
-  ]
+function factorSelector(id){
+  switch (id) {
+    case "sleep":
+      return new Sleep(id);
+      break;
+    case "exercise":
+      return new Exercise(id);
+      break;
+    case "mind":
+      return new Mindfullness(id);
+    default:
+      break;
+  }
 }
 
-const Exercise = {
-  rate: {
-    progress: {
-      start: 2,
-      end: 60,
-      unit: 'mins'
+class Factor{
+  constructor(id){
+    this.id = id;
+    this.name = "Factor name"
+    this.rate = {
+      ratingType: [{value: 'factorRate'}]
     }
-  },
-  chips: [
-    "leve",
-    "moderado",
-    "intenso",
-  ]
+  }
+  calculateDecimalRate(rate){}
 }
 
-const Nutrition = {
-  rate: {
-    table: {
-      meals: ['café da manhã', 'almoço', 'jantar'],
-      options: ['não comeu', 'pouco saudável', 'ok', 'saudável']
-    }
-  },
-  chips: [
-    'muito açucar',
-    'alcool',
-    "comeu pouco",
-    "comeu demais",
-    "vegetariano",
-    "fast food"
-  ]
+class Sleep extends Factor{
+  constructor(id){
+    super(id);
+    this.name = "Sono"
+    this.rate = {
+      stages: [
+        { value: 0, name: "péssimo" },
+        { value: 1, name: "ruim" },
+        { value: 2, name: "regular" },
+        { value: 3, name: "boa" },
+        { value: 4, name: "ótima" },
+      ]
+    };
+  }
+
+  calculateDecimalRate(selectedRate){
+    return selectedRate * 0.25;
+  }
 }
+
+class Mindfullness extends Factor{
+  constructor(id){
+    super(id);
+    this.name = "Atenção Plena"
+    this.rate = {
+      progress: {
+        start: 2,
+        end: 30,
+        unit: "mins",
+      },
+    };
+  }
+
+  calculateDecimalRate(selectedRate){
+    return selectedRate * 0.0333;
+  }
+}
+
+class Exercise extends Factor {
+  constructor(id) {
+    super(id);
+    this.name = "Exercício";
+    this.rate = {
+      progress: {
+        start: 2,
+        end: 60,
+        unit: "mins",
+      },
+    };
+  }
+
+  calculateDecimalRate(selectedRate) {
+    return (selectedRate * 0.0166);
+  }
+}
+
+class Nutrition extends Factor {
+  constructor(id) {
+    super(id);
+    this.name = "Alimentação";
+    this.rate = {
+      table: {
+        meals: ['café da manhã', 'almoço', 'jantar'],
+        options: ['não comeu', 'pouco saudável', 'ok', 'saudável']
+      }
+    };
+  }
+
+  calculateDecimalRate(selectedRate) {
+    return (1);
+  }
+}
+
+export default Factor;
+
+export { factorSelector }

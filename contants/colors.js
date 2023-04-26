@@ -20,7 +20,17 @@ export default {
     scale5: "#d6c64b",
     scale6: "#d64b59",
     scale7: "#ed6bcf",
+    //factors
+    //socialLogo: "#E87272",
+    socialPrimary: "#D07272",
+    nutritionLogo: "#EDCC79",
+    nutritionPrimary: "#D39B68",
+    exerciseLogo: "#ABF28A",
+    exercisePrimary: "#72A377",
+    exerciseDarker: "#517755",
+    sleepPrimary: "#7762A4",
+    sleepDarker: "#543890",
+    mindPrimary: "#5881B3",
+    mindDarker: "#3A6496"
 
-    //
-    
 }

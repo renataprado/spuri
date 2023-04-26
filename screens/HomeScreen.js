@@ -8,6 +8,23 @@ import FactorLog from '../components/FactorLog';
 
 const HomeScreen = () => {
   const [selectedDate, setSelectedDate] = useState(moment());
+  // const factorRegister = {
+  //   id: "sleep",
+  //   selectedRate: 2,
+  //   selectedChips: [
+  //     "deitou-se tarde"
+  //   ]
+  // }
+
+  const factorRegister = 
+    {
+      id: "exercise",
+      selectedRate: 20,
+      selectedChips: [
+        "leve"
+      ]
+    }
+
 
   const onSelectDate = (date) => {
     setSelectedDate(moment(date));
@@ -17,12 +34,10 @@ const HomeScreen = () => {
       <View style={styles.upbar} />
       <CalendarLine onSelectDate={onSelectDate}></CalendarLine>
       {/* <HomeArea /> */}
-      <FactorLog />
+      <FactorLog {... factorRegister}/>
     </View>
   )
 }
-
-
 
 export default HomeScreen
 

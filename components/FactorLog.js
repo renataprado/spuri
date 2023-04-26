@@ -4,7 +4,7 @@ import { factorSelector } from '../models/Factors';
 import Colors from '../contants/colors'
 
 
-function FactorLog( { id='title', selectedRate=0.6, selectedChips=['um', 'dois', 'vinte e quatro'] }) {
+function FactorLog( { id, selectedRate, selectedChips }) {
   const Factor = factorSelector(id);
   const decimalRate = Factor.calculateDecimalRate(selectedRate);
   const backgroundColor = Colors[id+"Primary"];
