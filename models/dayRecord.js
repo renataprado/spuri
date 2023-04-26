@@ -3,7 +3,7 @@ export default {
   factors: [
     {
       id: "humor",
-      selectedRate: 3,
+      selectedRate: 4,
       selectedChips: [
         "pensativo",
         "irritado"
