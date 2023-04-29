@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen'
 import LoginScreen  from './screens/LoginScreen'
 import StartScreen from './screens/StartScreen';
 import SignupScreen from './screens/SignUpScreen';
+import FactorsInputScreen from './screens/FactorsInputScreen';
 import AuthContextProvider, { AuthContext }from './store/auth-context';
 import { useContext } from 'react';
 
@@ -31,6 +32,14 @@ function AuthenticatedStack(){
   );
 }
 
+function TestStack(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen options={{ headerShown: false}} name="Input" component={FactorsInputScreen} />
+    </Stack.Navigator>
+  )
+}
+
 function Navegation(){
   const authCtx = useContext(AuthContext);
 
@@ -38,7 +47,8 @@ function Navegation(){
     <NavigationContainer>
       {/* { authCtx.isAuthenticated && <AuthStack />}
       { !authCtx.isAuthenticated && <AuthenticatedStack /> } */}
-      <AuthenticatedStack />
+      {/* <AuthenticatedStack /> */}
+      <TestStack />
     </NavigationContainer>
   )
 
