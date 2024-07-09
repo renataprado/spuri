@@ -2,19 +2,8 @@ import { StyleSheet, View, FlatList } from "react-native";
 import ChipButton from "./ChipButton";
 import { useState } from "react";
 
-  const chipsData = [
-    { id: '1', label: 'Botão 1', selected: false },
-    { id: '2', label: 'Botão 2', selected: false },
-    { id: '3', label: 'Botão 3', selected: false },
-    { id: '4', label: 'Botão 4', selected: false },
-    { id: '5', label: 'Botão 5', selected: false },
-    { id: '6', label: 'Botão 6', selected: false },
-    { id: '7', label: 'Botão 7', selected: false },
-    { id: '8', label: 'Botão 8', selected: false },
-    { id: '9', label: 'Botão 9', selected: false },
-  ];
-  
-  const ChipsInput = ({ onChange }) => {
+
+  const ChipsInput = ({ onChange, chipsData }) => {
     const [chips, setChips] = useState(chipsData);
   
     // const handleSelected = (id) => {

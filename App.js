@@ -8,7 +8,9 @@ import StartScreen from './screens/StartScreen';
 import SignupScreen from './screens/SignUpScreen';
 import FactorsInputScreen from './screens/FactorsInputScreen';
 import AuthContextProvider, { AuthContext }from './store/auth-context';
+import ScreenNavigationBar from './components/ui/ScreenNavigationBar';
 import { useContext } from 'react';
+import { Button } from 'react-native-web';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,23 +33,26 @@ function AuthenticatedStack(){
     </Stack.Navigator>
   );
 }
+const ProfileScreen = ({ navigation, route }) => {
+  return <Text>This is {route.params.name}'s profile</Text>;
+};
 
 function TestStack(){
   return(
     <Stack.Navigator>
-      <Stack.Screen options={{ headerShown: false}} name="Input" component={FactorsInputScreen} />
+      <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Factors" component={FactorsInputScreen} />
     </Stack.Navigator>
   )
 }
 
 function Navegation(){
   const authCtx = useContext(AuthContext);
-
   return(
     <NavigationContainer>
       {/* { authCtx.isAuthenticated && <AuthStack />}
       { !authCtx.isAuthenticated && <AuthenticatedStack /> } */}
-      {/* <AuthenticatedStack /> */}
       <TestStack />
     </NavigationContainer>
   )

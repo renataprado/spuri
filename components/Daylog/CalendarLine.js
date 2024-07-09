@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect, useRef} from 'react';
 import { StyleSheet, Text, FlatList, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import moment from 'moment/min/moment-with-locales';
-import Colors from '../contants/colors'
+import Colors from '../../contants/colors';
 import { FontAwesome5 } from '@expo/vector-icons';
 moment.locale('pt-br');
 
