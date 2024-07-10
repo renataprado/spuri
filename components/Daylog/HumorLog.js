@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View, Image } from 'react-native';
-import dayRecord from '../models/dayRecord';
-import colors from '../contants/colors';
-import face0 from '../assets/humors/face0.png'
-import face1 from '../assets/humors/face1.png'
-import face2 from "../assets/humors/face2.png";
-import face3 from "../assets/humors/face3.png";
-import face4 from "../assets/humors/face4.png";
+import dayRecord from '../../models/dayRecord';
+import colors from '../../contants/colors';
+import face0 from '../../assets/humors/face0.png'
+import face1 from '../../assets/humors/face1.png'
+import face2 from "../../assets/humors/face2.png";
+import face3 from "../../assets/humors/face3.png";
+import face4 from "../../assets/humors/face4.png";
 
 const faces = {
   0: face0,

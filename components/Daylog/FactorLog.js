@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View } from 'react-native';
 import { LinearProgress } from '@rneui/themed';
-import { factorSelector } from '../models/Factors';
-import Colors from '../contants/colors'
+import { factorSelector } from '../../models/Factors';
+import Colors from '../../contants/colors'
 
 
 function FactorLog( { id, selectedRate, selectedChips }) {

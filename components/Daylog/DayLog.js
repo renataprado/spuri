@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View } from 'react-native';
-import dayRecord from '../models/dayRecord';
+import dayRecord from '../../models/dayRecord';
 import FactorLog from './FactorLog';
 import HumorLog from './HumorLog';
 
