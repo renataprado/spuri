@@ -5,13 +5,9 @@ import moment from "moment";
 import Colors from "../contants/colors";
 import { Button, Input } from "@rneui/base";
 import DayLog from "../components/Daylog/DayLog";
-import ScreenNavigationBar from "../components/ui/ScreenNavigationBar";
-import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = ({navigation}) => {
   const [selectedDate, setSelectedDate] = useState(moment());
-
-  // const navigation = useNavigation();
 
   const onSelectDate = (date) => {
     setSelectedDate(moment(date));
@@ -21,16 +17,9 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.upbar} />
       <CalendarLine onSelectDate={onSelectDate}></CalendarLine>
       <DayLog />
-      <ScreenNavigationBar
-        onPress={() => navigation.navigate("Profile", { name: "Jane" })}
-      />
-      <ScreenNavigationBar
-        onPress={() => navigation.navigate("Factors")}
-      />
     </View>
   );
 };
-
 
 export default HomeScreen;
 

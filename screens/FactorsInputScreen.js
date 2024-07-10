@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import ChipsInput from '../components/FactorInput/ChipsInput';
 import { Button } from 'react-native-web';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import FactorQuestion from '../components/ui/FactorQuestion';
+import FactorSlider from '../components/ui/FactorSlider';
 
 function FactorsInputScreen() {
   const navegation = useNavigation();
@@ -16,6 +18,8 @@ function FactorsInputScreen() {
   return (
     <View style={styles.screen}>
        <Text>Input</Text>
+       <FactorQuestion />
+       <FactorSlider />
       <View style={{ flex: 1}}/>
       <View style={{ flex: 2 }}>
        <ChipsInput chipsData={factor.chipsData} />
