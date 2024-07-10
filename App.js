@@ -43,6 +43,9 @@ function TestStack(){
       <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Factors" component={FactorsInputScreen} />
+      <Stack.Screen  options={{ headerShown: false }} name="Start" component={StartScreen} />
+      <Stack.Screen  options={{ headerShown: false }} name="Login" component={LoginScreen} />
+      <Stack.Screen  options={{ headerShown: false }} name="Signup" component={SignupScreen} />
     </Stack.Navigator>
   )
 }
@@ -54,6 +57,7 @@ function Navegation(){
       {/* { authCtx.isAuthenticated && <AuthStack />}
       { !authCtx.isAuthenticated && <AuthenticatedStack /> } */}
       <TestStack />
+      <ScreenNavigationBar />
     </NavigationContainer>
   )
 
@@ -66,6 +70,7 @@ export default function App() {
         <Navegation />
       </AuthContextProvider>
       <StatusBar style='light'/>
+      
     </>
   );
 }

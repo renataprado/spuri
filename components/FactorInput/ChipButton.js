@@ -23,7 +23,7 @@ const ChipButton = ({chip, handleSelected}) => {
 
 const styles = StyleSheet.create({
   outlineButton: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'white',
     borderRadius: 20,
     padding: 10,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   colorButton: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'lightblue',
     backgroundColor: 'lightblue',
     borderRadius: 20,
