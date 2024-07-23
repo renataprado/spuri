@@ -1,18 +1,17 @@
 import { StyleSheet, View, FlatList } from "react-native";
 import ChipButton from "../ui/ChipButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
-  const ChipsInput = ({ onChange, chipsData }) => {
+  const ChipsInput = ({ onChange, chipsData, setChipsData}) => {
     const [chips, setChips] = useState(chipsData);
-  
-    // const handleSelected = (id) => {
-    //   const updatedChips = chips.map((chip) =>
-    //     chip.id === id ? { ...chip, selected: true } : chip
-    //   );
-    //   setChips(updatedChips);
-    // };
 
+    useEffect(() => {
+      setChips(chipsData)
+      console.log(chipsData)
+    }, [chipsData])
+    
+    
     const handleSelected = (id) => {
       setChips(prevChips => {
         return prevChips.map(chip => {
