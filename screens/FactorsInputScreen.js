@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AuthContent from '../components/Auth/AuthContent';
 import { View, Image, StyleSheet, Text } from "react-native";
 
@@ -8,24 +8,30 @@ import { Button } from 'react-native-web';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import FactorQuestion from '../components/ui/FactorQuestion';
 import FactorSlider from '../components/ui/FactorSlider';
+import ScreenNavigationBar from '../components/ui/ScreenNavigationBar';
 
-function FactorsInputScreen() {
+const screenStack =
+[
+  {name: "Factors",  props:{ name: "Humor", chipsData}},
+  {name: "Factors",  props:{ name: "Food", chipsData}},
+]
+
+function FactorsInputScreen({route}) {
   const navegation = useNavigation();
-
-  const [factor, setFactor] = useState({chipsData});
-
+  const currentFactor = { ...route.params};
 
   return (
     <View style={styles.screen}>
-       <Text>Input</Text>
+       <Text>{currentFactor?.name} {route?.params?.currentScreen}</Text>
        <FactorQuestion />
        <FactorSlider />
       <View style={{ flex: 1}}/>
       <View style={{ flex: 2 }}>
-       <ChipsInput chipsData={factor.chipsData} />
+       <ChipsInput chipsData={currentFactor.chipsData} />
       </View>
       <View style={{ flex: 3 }} >
     </View>
+    <ScreenNavigationBar screenStack={screenStack}/>
     <PrimaryButton  onPress={() => {console.log(factor)}}>
       'print state'
     </PrimaryButton>
@@ -34,6 +40,7 @@ function FactorsInputScreen() {
 }
 
 export default FactorsInputScreen;
+
 
 const styles = StyleSheet.create({
   screen: {
@@ -55,3 +62,10 @@ const chipsData = [
   { id: '8', label: 'Botão 8', selected: false },
   { id: '9', label: 'Botão 9', selected: false },
 ];
+
+const factorObj = {
+  name: "First",
+  chipsData: chipsData,
+
+}
+

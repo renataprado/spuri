@@ -1,27 +1,29 @@
 import { Alert, Button, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { useState } from 'react';
 
 
-const ScreenNavigationBar = () => {
+const ScreenNavigationBar = ({screenStack}) => {
   const navigator = useNavigation();
-  let currentScreen = 0;
+  const [currentScreen, setCurrentScreen] = useState(0);
 
-  const screenStack =
-  [
-    {name: "Factors"},
-    {name: "Start"},
-    {name: "Login"},
-    {name: "Profile", props:{ name: "Jane"}},
-  ]
   const nextPress = () => {
     navigator.navigate(screenStack[currentScreen].name, screenStack[currentScreen].props)
 
     if(currentScreen < screenStack.length-1){
-      currentScreen++;
+      setCurrentScreen(currentScreen+1);  
     } else {
-      currentScreen = 0;
+      setCurrentScreen(0);
     }
   }
+
+  const backPress = () => {
+    navigator.navigate(screenStack[currentScreen].name, screenStack[currentScreen].props)
+
+    if(currentScreen > 0){
+      setCurrentScreen(currentScreen-1);
+    }
+  } 
 
 
   return (
@@ -32,7 +34,7 @@ const ScreenNavigationBar = () => {
       />
       <Button
         title="previous"
-        onPress={() => {navigator.goBack()}}
+        onPress={backPress}
       />
     </View>
   ) 

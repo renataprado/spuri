@@ -26,24 +26,30 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 20,
-    padding: 10,
-    margin: 10,
+    padding: 8,
+    margin: 8,
+    minWidth: 80
   },
   outlineButtonText: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 12,
+    textAlign: 'center'
   },
   colorButton: {
     borderWidth: 1,
-    borderColor: 'lightblue',
-    backgroundColor: 'lightblue',
+    borderColor: '#6695c1',
+    backgroundColor: '#6695c1',
     borderRadius: 20,
-    padding: 10,
-    margin: 10,
+    padding: 8,
+    margin: 8,
+    minWidth: 80
   },
   colorButtonText: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 12,
+    textAlign: 'center'
   },
 });
 

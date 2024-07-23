@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList } from "react-native";
-import ChipButton from "./ChipButton";
+import ChipButton from "../ui/ChipButton";
 import { useState } from "react";
 
 
