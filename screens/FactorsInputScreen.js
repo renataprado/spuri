@@ -16,7 +16,8 @@ function FactorsInputScreen({ route, initialParams }) {
 
   useEffect(() => {
    setCurrentFactor({...route.params})
-  }, [route])
+   console.log(route.params)
+  }, [route]);
 
   const screenStack = [
     { name: "Factors", props: { name: "Humor", chipsData:
@@ -34,6 +35,20 @@ function FactorsInputScreen({ route, initialParams }) {
      } },
   ];
 
+  const handleOnChangeChips = (updatedChip) => {
+    const { chipsData } = currentFactor;
+    const updatedChipsData = chipsData.map(chip =>
+      chip.id === updatedChip.id ? updatedChip : chip
+    ); 
+
+    setCurrentFactor(prevState => (
+      {
+        ...prevState,
+        chipsData: updatedChipsData
+      }
+    ))
+  }
+
   return (
     <View style={styles.screen}>
       <Text>
@@ -44,7 +59,7 @@ function FactorsInputScreen({ route, initialParams }) {
       <View style={{ flex: 1 }} />
       <View style={{ flex: 2 }}>
         <Text>{currentFactor.chipsData[0].label}</Text>
-        <ChipsInput chipsData={currentFactor?.chipsData} setChipsData={setCurrentFactor}/>
+        <ChipsInput chipsData={currentFactor?.chipsData} onChange={handleOnChangeChips}/>
       </View>
       <View style={{ flex: 3 }}></View>
       <ScreenNavigationBar screenStack={screenStack} />

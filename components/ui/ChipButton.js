@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 const ChipButton = ({chip, handleSelected}) => {
-  const [isPressed, setIsPressed] = useState(false);
 
   const handlePress = () => {
-    setIsPressed(!isPressed);
-    handleSelected(chip.id);
+    handleSelected({...chip, selected: !chip.selected });
   };
 
   return (
     <TouchableOpacity
-      style={isPressed ? styles.colorButton : styles.outlineButton}
+      style={chip.selected ? styles.colorButton : styles.outlineButton}
       onPress={handlePress}
     >
-      <Text style={isPressed ? styles.colorButtonText : styles.outlineButtonText}>
+      <Text style={chip.selected ? styles.colorButtonText : styles.outlineButtonText}>
        {chip.label}
       </Text>
     </TouchableOpacity>

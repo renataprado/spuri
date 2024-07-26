@@ -4,33 +4,17 @@ import { useState, useEffect } from "react";
 
 
   const ChipsInput = ({ onChange, chipsData, setChipsData}) => {
-    const [chips, setChips] = useState(chipsData);
 
-    useEffect(() => {
-      setChips(chipsData)
-      console.log(chipsData)
-    }, [chipsData])
-    
-    
-    const handleSelected = (id) => {
-      setChips(prevChips => {
-        return prevChips.map(chip => {
-          if (chip.id === id) {
-            return {
-              ...chip,
-              selected: !chip.selected,
-            };
-          }
-          return chip;
-        });
-      });
-    };
+    // const handleSelected = (id) => {
+    //   const updatedChip = chipsData.map(chip => chip.id === id ? {...chip, selected: !chip.selected} : chip)
+    //   onChange(updatedChip);
+    // };
   
     return (
       <View style={styles.rootContainer}>
-        {chips.map((chip) => (
+        {chipsData.map((chip) => (
           <View style={styles.chipContainer} key={chip.id}>
-            <ChipButton chip={chip} handleSelected={handleSelected} />
+            <ChipButton chip={chip} handleSelected={onChange} />
           </View>
         ))}
       </View>
