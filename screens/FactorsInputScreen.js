@@ -11,56 +11,66 @@ import FactorSlider from "../components/ui/FactorSlider";
 import ScreenNavigationBar from "../components/ui/ScreenNavigationBar";
 
 function FactorsInputScreen({ route, initialParams }) {
-  const navegation = useNavigation();
-  const [currentFactor, setCurrentFactor] = useState({...route.params})
-
-  useEffect(() => {
-   setCurrentFactor({...route.params})
-   console.log(route.params)
-  }, [route]);
-
   const screenStack = [
-    { name: "Factors", props: { name: "Humor", chipsData:
-      [
+    { name: "Factors", props: { name: "Humor" } },
+    { name: "Factors", props: { name: "Food" } },
+  ];
+
+  const [Factors, setFactors] = useState([
+    {
+      name: "Humor",
+      chipsData: [
         { id: "1", label: "Humor1", selected: false },
         { id: "2", label: "Humor2", selected: false },
-      ]
-     } },
-    { name: "Factors", props: { name: "Food", chipsData:
-      [
+      ],
+    },
+    {
+      name: "Food",
+      chipsData: [
         { id: "1", label: "Food1", selected: false },
         { id: "2", label: "Food2", selected: false },
         { id: "3", label: "Food3", selected: false },
-      ]
-     } },
-  ];
+      ],
+    },
+  ]);
+
+  const [currentFactor, setCurrentFactor] = useState(null);
+
+  useEffect(() => {
+    setCurrentFactor(Factors.find(Factor => Factor.name === route.params.name))
+  }, [route]);
 
   const handleOnChangeChips = (updatedChip) => {
     const { chipsData } = currentFactor;
-    const updatedChipsData = chipsData.map(chip =>
+    const updatedChipsData = chipsData.map((chip) =>
       chip.id === updatedChip.id ? updatedChip : chip
-    ); 
+    );
 
-    setCurrentFactor(prevState => (
-      {
-        ...prevState,
-        chipsData: updatedChipsData
-      }
-    ))
-  }
+    setCurrentFactor((prevState) => ({
+      ...prevState,
+      chipsData: updatedChipsData,
+    })); 
+
+    setFactors(prevFactors => prevFactors.map(factor =>
+      factor.name === currentFactor.name ? { ...factor, chipsData: updatedChipsData } : factor
+    ));
+  };
 
   return (
     <View style={styles.screen}>
       <Text>
-        {currentFactor?.name} {route?.params?.currentScreen}
+        {route?.params?.currentScreen}
       </Text>
       <FactorQuestion />
       <FactorSlider />
       <View style={{ flex: 1 }} />
-      <View style={{ flex: 2 }}>
+      {
+        currentFactor &&
+        <View style={{ flex: 2 }}>
         <Text>{currentFactor.chipsData[0].label}</Text>
         <ChipsInput chipsData={currentFactor?.chipsData} onChange={handleOnChangeChips}/>
       </View>
+      }
       <View style={{ flex: 3 }}></View>
       <ScreenNavigationBar screenStack={screenStack} />
       {/* <PrimaryButton
