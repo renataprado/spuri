@@ -82,20 +82,3 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
   },
 });
-
-const chipsData = [
-  { id: "1", label: "Botão 1", selected: false },
-  { id: "2", label: "Botão 2", selected: false },
-  { id: "3", label: "Botão 3", selected: false },
-  { id: "4", label: "Botão 4", selected: false },
-  { id: "5", label: "Botão 5", selected: false },
-  { id: "6", label: "Botão 6", selected: false },
-  { id: "7", label: "Botão 7", selected: false },
-  { id: "8", label: "Botão 8", selected: false },
-  { id: "9", label: "Botão 9", selected: false },
-];
-
-const factorObj = {
-  name: "First",
-  chipsData: chipsData,
-};
