@@ -1,12 +1,24 @@
+import { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ChipButton from './ChipButton';
+import ChipsInput from '../FactorInput/ChipsInput';
 
-const FactorQuestion = () => {
+const FactorQuestion = ({question, onChange}) => {
+  const { statement, qualifier } = question
+  const [answerChips, setAnswerChips] = useState(qualifier);
+
+  // const handleSelected = ({id}) => {
+  //  const updatedAnswer = answerChips.map((chip) => (
+  //   { ...chip, selected: (chip.id === id)}
+  //  ))
+  //   setAnswerChips(updatedAnswer);
+  //   setAnswer(id);
+  // };
+
   return (
     <View style={styles.rootContainer}>
-      <Text>Question</Text>
-      <ChipButton chip={{id: "y", label: "sim", selected: false }} />
-      <ChipButton chip={{id: "n", label: "não", selected: false }} />
+      <Text>{statement}</Text>
+      <ChipsInput qualifier={qualifier} onChange={onChange} />
     </View>
   ) 
 }

@@ -9,66 +9,67 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 import FactorQuestion from "../components/ui/FactorQuestion";
 import FactorSlider from "../components/ui/FactorSlider";
 import ScreenNavigationBar from "../components/ui/ScreenNavigationBar";
+import {mock} from "../factorMock";
 
-function FactorsInputScreen({ route, initialParams }) {
+const FactorsInputScreen = ({ route, initialParams }) => {
   const screenStack = [
+    { name: "Factors", props: { name: "Exercise" } },
     { name: "Factors", props: { name: "Humor" } },
     { name: "Factors", props: { name: "Food" } },
   ];
 
-  const [Factors, setFactors] = useState([
-    {
-      name: "Humor",
-      chipsData: [
-        { id: "1", label: "Humor1", selected: false },
-        { id: "2", label: "Humor2", selected: false },
-      ],
-    },
-    {
-      name: "Food",
-      chipsData: [
-        { id: "1", label: "Food1", selected: false },
-        { id: "2", label: "Food2", selected: false },
-        { id: "3", label: "Food3", selected: false },
-      ],
-    },
-  ]);
+  const [Factors, setFactors] = useState(mock.factors);
 
   const [currentFactor, setCurrentFactor] = useState(null);
 
   useEffect(() => {
-    setCurrentFactor(Factors.find(Factor => Factor.name === route.params.name))
+    setCurrentFactor(Factors.find(Factor => Factor.name === route.params.name));
   }, [route]);
 
-  const handleOnChangeChips = (updatedChip) => {
-    const { chipsData } = currentFactor;
-    const updatedChipsData = chipsData.map((chip) =>
-      chip.id === updatedChip.id ? updatedChip : chip
-    );
+  const updateFactor = (update) => {
+    setFactors(prevFactors => prevFactors.map(factor =>
+      factor.name === currentFactor.name ? { ...factor, ...update} : factor
+    ));
+  }
+
+  const updateQualifier = (updatedChipsData) => {
+    const qualifier = { ...currentFactor.qualifier,  ...updatedChipsData }
 
     setCurrentFactor((prevState) => ({
       ...prevState,
-      chipsData: updatedChipsData,
+      qualifier,
     })); 
 
-    setFactors(prevFactors => prevFactors.map(factor =>
-      factor.name === currentFactor.name ? { ...factor, chipsData: updatedChipsData } : factor
-    ));
+    updateFactor(qualifier)
   };
+
+  const updateQuestion = (updatedChipsData) => {
+    const question = {...currentFactor.question, 
+      qualifier: { ...currentFactor.qualifier,  ...updatedChipsData }
+    }
+
+    setCurrentFactor((prevState) => ({
+      ...prevState,
+      question
+    }));
+
+    updateFactor(question)
+  }
 
   return (
     <View style={styles.screen}>
       <Text>
-        {route?.params?.currentScreen}
+        {currentFactor?.name}
       </Text>
-      <FactorQuestion />
+      {
+        currentFactor?.question && <FactorQuestion question={currentFactor.question} onChange={updateQuestion}/>
+      }      
       <FactorSlider />
       <View style={{ flex: 1 }} />
       {
         currentFactor &&
         <View style={{ flex: 2 }}>
-        <Text>{currentFactor.chipsData[0].label}</Text>
-        <ChipsInput chipsData={currentFactor?.chipsData} onChange={handleOnChangeChips}/>
+        <ChipsInput qualifier={currentFactor?.qualifier} onChange={updateQualifier}/>
       </View>
       }
       <View style={{ flex: 3 }}></View>

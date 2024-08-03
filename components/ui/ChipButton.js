@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-const ChipButton = ({chip, handleSelected}) => {
+const ChipButton = ({chip, onChange}) => {
 
   const handlePress = () => {
-    handleSelected({...chip, selected: !chip.selected });
+    onChange({...chip, selected: !chip.selected });
   };
 
   return (
