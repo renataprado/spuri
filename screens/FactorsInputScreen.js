@@ -18,43 +18,41 @@ const FactorsInputScreen = ({ route, initialParams }) => {
     { name: "Factors", props: { name: "Food" } },
   ];
 
-  const [Factors, setFactors] = useState(mock.factors);
+  const [factors, setFactors] = useState(mock.factors);
 
   const [currentFactor, setCurrentFactor] = useState(null);
 
   useEffect(() => {
-    setCurrentFactor(Factors.find(Factor => Factor.name === route.params.name));
+    setCurrentFactor(factors.find(Factor => Factor.name === route.params.name));
   }, [route]);
 
-  const updateFactor = (update) => {
+  const updateFactor = (updatedData) => {
     setFactors(prevFactors => prevFactors.map(factor =>
-      factor.name === currentFactor.name ? { ...factor, ...update} : factor
+      factor.name === currentFactor.name ? { ...factor, ...updatedData } : factor
     ));
-  }
-
-  const updateQualifier = (updatedChipsData) => {
-    const qualifier = { ...currentFactor.qualifier,  ...updatedChipsData }
-
-    setCurrentFactor((prevState) => ({
+  };
+  
+  const updateCurrentFactor = (updatedData) => {
+    setCurrentFactor(prevState => ({
       ...prevState,
-      qualifier,
-    })); 
-
-    updateFactor(qualifier)
+      ...updatedData,
+    }));
   };
 
-  const updateQuestion = (updatedChipsData) => {
-    const question = {...currentFactor.question, 
-      qualifier: { ...currentFactor.qualifier,  ...updatedChipsData }
-    }
+  const updateFactorChips = (field, updatedChipsData) => {
+    const updatedFieldData = {
+      ...currentFactor[field],
+      ...(field !== 'qualifier'
+        ? { qualifier: { ...currentFactor.qualifier, ...updatedChipsData } }
+        : updatedChipsData),
+    };
+  
+    const updatedData = { [field]: updatedFieldData };
+  
+    updateCurrentFactor(updatedData);
+    updateFactor(updatedData);
+  };
 
-    setCurrentFactor((prevState) => ({
-      ...prevState,
-      question
-    }));
-
-    updateFactor(question)
-  }
 
   return (
     <View style={styles.screen}>
@@ -62,14 +60,21 @@ const FactorsInputScreen = ({ route, initialParams }) => {
         {currentFactor?.name}
       </Text>
       {
-        currentFactor?.question && <FactorQuestion question={currentFactor.question} onChange={updateQuestion}/>
+        currentFactor?.question && 
+        <FactorQuestion 
+          question={currentFactor.question} 
+          onChange={(updatedChipsData) => updateFactorChips('question', updatedChipsData)}
+        />
       }      
       <FactorSlider />
       <View style={{ flex: 1 }} />
       {
         currentFactor &&
         <View style={{ flex: 2 }}>
-        <ChipsInput qualifier={currentFactor?.qualifier} onChange={updateQualifier}/>
+        <ChipsInput 
+          qualifier={currentFactor?.qualifier} 
+          onChange={(updatedChipsData) => updateFactorChips('qualifier', updatedChipsData)}
+        />
       </View>
       }
       <View style={{ flex: 3 }}></View>
