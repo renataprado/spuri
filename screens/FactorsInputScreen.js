@@ -13,13 +13,12 @@ import {mock} from "../factorMock";
 
 const FactorsInputScreen = ({ route, initialParams }) => {
   const screenStack = [
-    { name: "Factors", props: { name: "Exercise" } },
-    { name: "Factors", props: { name: "Humor" } },
-    { name: "Factors", props: { name: "Food" } },
+    { name: "Factors", props: { name: "Sono" } },
+    // { name: "Factors", props: { name: "Humor" } },
+    // { name: "Factors", props: { name: "Food" } },
   ];
 
   const [factors, setFactors] = useState(mock.factors);
-
   const [currentFactor, setCurrentFactor] = useState(null);
 
   useEffect(() => {
@@ -53,7 +52,6 @@ const FactorsInputScreen = ({ route, initialParams }) => {
     updateFactor(updatedData);
   };
 
-
   return (
     <View style={styles.screen}>
       <Text>
@@ -65,8 +63,11 @@ const FactorsInputScreen = ({ route, initialParams }) => {
           question={currentFactor.question} 
           onChange={(updatedChipsData) => updateFactorChips('question', updatedChipsData)}
         />
-      }      
-      <FactorSlider />
+      }     
+      {
+        currentFactor?.rating &&
+        <FactorSlider rating={currentFactor?.rating}/>
+      } 
       <View style={{ flex: 1 }} />
       {
         currentFactor &&

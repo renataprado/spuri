@@ -5,15 +5,6 @@ import ChipsInput from '../FactorInput/ChipsInput';
 
 const FactorQuestion = ({question, onChange}) => {
   const { statement, qualifier } = question
-  const [answerChips, setAnswerChips] = useState(qualifier);
-
-  // const handleSelected = ({id}) => {
-  //  const updatedAnswer = answerChips.map((chip) => (
-  //   { ...chip, selected: (chip.id === id)}
-  //  ))
-  //   setAnswerChips(updatedAnswer);
-  //   setAnswer(id);
-  // };
 
   return (
     <View style={styles.rootContainer}>
