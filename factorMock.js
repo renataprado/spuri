@@ -13,32 +13,13 @@ export const mock = {
         type: "fixed",
         title: "Como foi sua noite de sono?",
         rateValues: [
-          { value: 1, description: "Péssimo"},
-          { value: 2, description: "Ruim"},
-          { value: 3, description: "Ok"},
-          { value: 4, description: "Bom"},
-          { value: 5, description: "Ótimo"},
-        ]
-      }
-    },
-    {
-      name: "Humor",
-      qualifier: {
-        exclusive: false,
-        chipsData: [
-          { id: "1", label: "Humor1", selected: false },
-          { id: "2", label: "Humor2", selected: false },
+          { value: 1, description: "Péssimo" },
+          { value: 2, description: "Ruim" },
+          { value: 3, description: "Ok" },
+          { value: 4, description: "Bom" },
+          { value: 5, description: "Ótimo" },
         ],
       },
-      rating: {
-        rateValues: [
-          { value: 1, description: "Péssimo"},
-          { value: 2, description: "Ruim"},
-          { value: 3, description: "Ok"},
-          { value: 4, description: "Bom"},
-          { value: 5, description: "Ótimo"},
-        ]
-      }
     },
     {
       name: "Exercise",
@@ -60,7 +41,35 @@ export const mock = {
           { id: "3", label: "Intenso", selected: false },
         ],
       },
+      rating: {
+        type: "range",
+        title: "Duração",
+        minimumValue: 0,
+        maximumValue: 30,
+        step: 5,
+        unit: "Minutos",
+      },
     },
+    {
+      name: "Humor",
+      qualifier: {
+        exclusive: false,
+        chipsData: [
+          { id: "1", label: "Humor1", selected: false },
+          { id: "2", label: "Humor2", selected: false },
+        ],
+      },
+      rating: {
+        rateValues: [
+          { value: 1, description: "Péssimo" },
+          { value: 2, description: "Ruim" },
+          { value: 3, description: "Ok" },
+          { value: 4, description: "Bom" },
+          { value: 5, description: "Ótimo" },
+        ],
+      },
+    },
+
     {
       name: "Food",
       qualifier: {

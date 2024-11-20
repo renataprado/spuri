@@ -14,7 +14,7 @@ import {mock} from "../factorMock";
 const FactorsInputScreen = ({ route, initialParams }) => {
   const screenStack = [
     { name: "Factors", props: { name: "Sono" } },
-    // { name: "Factors", props: { name: "Humor" } },
+    { name: "Factors", props: { name: "Exercise" } },
     // { name: "Factors", props: { name: "Food" } },
   ];
 
@@ -64,10 +64,10 @@ const FactorsInputScreen = ({ route, initialParams }) => {
           onChange={(updatedChipsData) => updateFactorChips('question', updatedChipsData)}
         />
       }     
-      {
+      {/* {
         currentFactor?.rating &&
         <FactorSlider rating={currentFactor?.rating}/>
-      } 
+      }  */}
       <View style={{ flex: 1 }} />
       {
         currentFactor &&
@@ -80,13 +80,13 @@ const FactorsInputScreen = ({ route, initialParams }) => {
       }
       <View style={{ flex: 3 }}></View>
       <ScreenNavigationBar screenStack={screenStack} />
-      {/* <PrimaryButton
+      <PrimaryButton
         onPress={() => {
-          console.log(factor);
+          console.log(factors);
         }}
       >
         'print state'
-      </PrimaryButton> */}
+      </PrimaryButton>
     </View>
   );
 }

@@ -27,8 +27,8 @@ const FactorSlider = ({ rating }) => {
         thumbStyle={{ height: 20, width: 20, backgroundColor: "red" }}
       />
       {
-        rateValues && 
-        <Text>{rateValues[value-1].description}</Text>
+        rateValues ? <Text>{rateValues[value-1].description}</Text> 
+        : <Text>{value} {unit}</Text>
       }
       
     </View>
